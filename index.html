@@ -37,7 +37,7 @@ nav {
 nav a {
     color: white;
     text-decoration: none;
-    margin: 0 25px;
+    margin: 0 20px;
     font-weight: 500;
     letter-spacing: 1px;
     transition: 0.3s;
@@ -49,59 +49,103 @@ nav a:hover {
 
 /* HERO */
 .hero {
-    height: 100vh;
+    height: 90vh;
     background: url('https://images.unsplash.com/photo-1497218770144-3fea6dbc33fe?w=1600&auto=format&fit=crop&q=60') center/cover no-repeat;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding-top: 60px;
+    text-align: center;
 }
 
 .hero h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: 600;
     letter-spacing: 3px;
     text-transform: uppercase;
-    text-align: center;
     color: #2e2e2e;
     background: rgba(255,255,255,0.75);
     backdrop-filter: blur(10px);
-    padding: 30px 60px;
+    padding: 25px 40px;
     border-radius: 15px;
     box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    margin-bottom: 20px;
 }
 
 .hero h1 span {
     display: block;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 300;
     letter-spacing: 4px;
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
-/* SECTIONS */
-section {
-    padding: 120px 20px;
-    max-width: 1000px;
-    margin: auto;
+/* SECTION ME CONTACTER */
+.contact-me {
+    padding: 60px 20px;
     text-align: center;
 }
 
-h2 {
-    margin-bottom: 25px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: #8B6C42;
+.contact-me a {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #8B6C42;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: 0.3s;
 }
 
-p {
+.contact-me a:hover {
+    background: #6f5434;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* QUI SUIS-JE - RECTANGLE ET IMAGE */
+#apropos {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 40px;
+    padding: 80px 20px;
+    flex-wrap: wrap;
+}
+
+#apropos .apropos-texte {
+    border: 2px solid #8B6C42;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 600px;
+    text-align: left;
+    flex: 1;
+}
+
+#apropos .apropos-texte p {
     font-weight: 300;
     line-height: 1.8;
 }
 
+#apropos .apropos-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 3px solid #8B6C42;
+}
+
+#apropos .apropos-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 /* SCHEMA */
 .schema {
-    margin-top: 50px;
+    margin-top: 40px;
     opacity: 0;
     transform: translateY(40px);
     transition: all 1s ease;
@@ -116,20 +160,23 @@ p {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    align-items: center;
     gap: 30px;
     margin-top: 40px;
+    position: relative;
 }
 
 .step {
     background: white;
-    padding: 35px; /* plus grand */
+    padding: 25px;
     border-radius: 12px;
-    width: 280px; /* plus large */
+    width: 220px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.08);
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
+    position: relative;
 }
 
 .step:hover {
@@ -137,11 +184,23 @@ p {
     box-shadow: 0 15px 40px rgba(0,0,0,0.2);
 }
 
+/* FLECHES ENTRE LES ETAPES */
+.step:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    right: -35px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.8rem;
+    color: #8B6C42;
+    font-weight: bold;
+}
+
 /* CREATIONS */
 .creations {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
+    gap: 20px;
     margin-top: 50px;
 }
 
@@ -157,12 +216,13 @@ p {
 
 /* BOUTON CREATIONS */
 .btn-container {
-    margin-top: 50px;
+    margin-top: 40px;
+    text-align: center;
 }
 
 .btn-creations {
     display: inline-block;
-    padding: 15px 40px;
+    padding: 12px 30px;
     background: #8B6C42;
     color: white;
     text-decoration: none;
@@ -178,28 +238,15 @@ p {
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-/* CONTACT */
-.contact {
-    background: #8B6C42;
-    color: white;
-    padding: 100px 20px;
-    text-align: center;
-}
-
-.contact p {
-    margin: 10px 0;
-}
-
 /* PETITE GALERIE ARTISTIQUE */
 .art-gallery {
     max-width: 1200px;
-    margin: 80px auto;
+    margin: 60px auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
     justify-items: center;
     align-items: center;
-    transform: rotate(0deg);
 }
 
 .art-gallery img {
@@ -210,7 +257,6 @@ p {
     transform-origin: center;
 }
 
-/* Décalage artistique */
 .art-gallery img:nth-child(1) { transform: rotate(-3deg); }
 .art-gallery img:nth-child(2) { transform: rotate(2deg); }
 .art-gallery img:nth-child(3) { transform: rotate(-1deg); }
@@ -229,6 +275,53 @@ footer {
     color: white;
     font-size: 0.9rem;
 }
+
+/* MEDIA QUERIES - MOBILE */
+@media (max-width: 768px) {
+    #apropos {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+
+    #apropos .apropos-texte {
+        text-align: center;
+        max-width: 90%;
+    }
+
+    #apropos .apropos-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .step:not(:last-child)::after {
+        content: "↓";
+        position: absolute;
+        right: 50%;
+        top: 100%;
+        transform: translateX(50%) translateY(10px);
+    }
+
+    .schema-box {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    nav a {
+        margin: 10px 15px;
+        display: inline-block;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+        padding: 20px 30px;
+    }
+
+    .hero h1 span {
+        font-size: 1rem;
+    }
+}
 </style>
 </head>
 
@@ -236,9 +329,7 @@ footer {
 
 <nav>
     <a href="#accueil">Accueil</a>
-    <a href="#apropos">Qui suis-je ?</a>
     <a href="#creations">Mes créations</a>
-    <a href="#contact">Contact</a>
 </nav>
 
 <div class="hero" id="accueil">
@@ -248,20 +339,32 @@ footer {
     </h1>
 </div>
 
-<section id="apropos">
-    <h2>Qui suis-je ?</h2>
-    <p>
-        Artisan passionné par le bois et les matériaux nobles, Arthur Favreau conçoit
-        des pièces uniques mêlant tradition et modernité. Chaque création est pensée
-        avec exigence, précision et respect du matériau.
-    </p>
+<!-- SECTION ME CONTACTER -->
+<section class="contact-me">
+    <h2>Me contacter</h2>
+    <a href="mailto:contact@ebeniste.fr">Envoyer un mail</a>
+</section>
 
-    <div class="schema" id="schema">
-        <h2>Le Processus</h2>
-        <div class="schema-box">
-            <div class="step">1. Écoute & imagination</div>
-            <div class="step">2. Conception</div>
-            <div class="step">3. Fabrication</div>
+<!-- QUI SUIS-JE -->
+<section id="apropos">
+    <div class="apropos-image">
+        <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=600" alt="Portrait">
+    </div>
+    <div class="apropos-texte">
+        <h2>Qui suis-je ?</h2>
+        <p>
+            Artisan passionné par le bois et les matériaux nobles, Arthur Favreau conçoit
+            des pièces uniques mêlant tradition et modernité. Chaque création est pensée
+            avec exigence, précision et respect du matériau.
+        </p>
+
+        <div class="schema" id="schema">
+            <h2>Le Processus</h2>
+            <div class="schema-box">
+                <div class="step">1. Écoute & imagination</div>
+                <div class="step">2. Conception</div>
+                <div class="step">3. Fabrication</div>
+            </div>
         </div>
     </div>
 </section>
@@ -285,13 +388,6 @@ footer {
     <img src="https://images.unsplash.com/photo-1705760058049-b58119c416a9?q=80&w=880&auto=format&fit=crop" alt="Création 4">
     <img src="https://plus.unsplash.com/premium_photo-1674508713892-50cb9bb73520?q=80&w=1172&auto=format&fit=crop" alt="Création 5">
 </section>
-
-<div class="contact" id="contact">
-    <h2>Contact</h2>
-    <p>Email : contact@ebeniste.fr</p>
-    <p>Téléphone : 06 00 00 00 00</p>
-    <p>Atelier situé en France</p>
-</div>
 
 <footer>
     © 2026 Arthur Favreau - Ébéniste
