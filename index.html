@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arthur Favreau - Ébéniste</title>
+
+<!-- Google Font moderne -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f3ef;
+    color: #333;
+    scroll-behavior: smooth;
+}
+
+/* MENU */
+nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: rgba(139,108,66,0.95);
+    backdrop-filter: blur(6px);
+    padding: 15px 0;
+    text-align: center;
+    z-index: 1000;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 25px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    opacity: 0.7;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    background: url('https://images.unsplash.com/photo-1497218770144-3fea6dbc33fe?w=1600&auto=format&fit=crop&q=60') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 60px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #2e2e2e;
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(10px);
+    padding: 30px 60px;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.hero h1 span {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 4px;
+    margin-top: 10px;
+}
+
+/* SECTIONS */
+section {
+    padding: 120px 20px;
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 25px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #8B6C42;
+}
+
+p {
+    font-weight: 300;
+    line-height: 1.8;
+}
+
+/* SCHEMA */
+.schema {
+    margin-top: 50px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s ease;
+}
+
+.schema.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.schema-box {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.step {
+    background: white;
+    padding: 35px; /* plus grand */
+    border-radius: 12px;
+    width: 280px; /* plus large */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.step:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+/* CREATIONS */
+.creations {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 50px;
+}
+
+.creations img {
+    width: 100%;
+    border-radius: 15px;
+    transition: 0.4s;
+}
+
+.creations img:hover {
+    transform: scale(1.05);
+}
+
+/* BOUTON CREATIONS */
+.btn-container {
+    margin-top: 50px;
+}
+
+.btn-creations {
+    display: inline-block;
+    padding: 15px 40px;
+    background: #8B6C42;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    transition: 0.3s ease;
+}
+
+.btn-creations:hover {
+    background: #6f5434;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* CONTACT */
+.contact {
+    background: #8B6C42;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.contact p {
+    margin: 10px 0;
+}
+
+/* PETITE GALERIE ARTISTIQUE */
+.art-gallery {
+    max-width: 1200px;
+    margin: 80px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    align-items: center;
+    transform: rotate(0deg);
+}
+
+.art-gallery img {
+    width: 90%;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: 0.5s;
+    transform-origin: center;
+}
+
+/* Décalage artistique */
+.art-gallery img:nth-child(1) { transform: rotate(-3deg); }
+.art-gallery img:nth-child(2) { transform: rotate(2deg); }
+.art-gallery img:nth-child(3) { transform: rotate(-1deg); }
+.art-gallery img:nth-child(4) { transform: rotate(3deg); }
+.art-gallery img:nth-child(5) { transform: rotate(-2deg); }
+
+.art-gallery img:hover {
+    transform: scale(1.08) rotate(0deg);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #8B6C42;
+    color: white;
+    font-size: 0.9rem;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#apropos">Qui suis-je ?</a>
+    <a href="#creations">Mes créations</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<div class="hero" id="accueil">
+    <h1>
+        Arthur Favreau
+        <span>Artisan Ébéniste</span>
+    </h1>
+</div>
+
+<section id="apropos">
+    <h2>Qui suis-je ?</h2>
+    <p>
+        Artisan passionné par le bois et les matériaux nobles, Arthur Favreau conçoit
+        des pièces uniques mêlant tradition et modernité. Chaque création est pensée
+        avec exigence, précision et respect du matériau.
+    </p>
+
+    <div class="schema" id="schema">
+        <h2>Le Processus</h2>
+        <div class="schema-box">
+            <div class="step">1. Écoute & imagination</div>
+            <div class="step">2. Conception</div>
+            <div class="step">3. Fabrication</div>
+        </div>
+    </div>
+</section>
+
+<section id="creations">
+    <h2>Mes créations</h2>
+    <p>Découvrez une sélection de mes projets réalisés sur mesure pour mes clients.</p>
+
+    <div class="btn-container">
+        <a href="https://ton-lien-externe.com" target="_blank" class="btn-creations">
+            Voir mes créations
+        </a>
+    </div>
+</section>
+
+<!-- PETITE GALERIE ARTISTIQUE -->
+<section class="art-gallery">
+    <img src="https://plus.unsplash.com/premium_photo-1677151140623-77c513228776?q=80&w=687&auto=format&fit=crop" alt="Création 1">
+    <img src="https://plus.unsplash.com/premium_photo-1682144637216-003428392e22?q=80&w=1186&auto=format&fit=crop" alt="Création 2">
+    <img src="https://images.unsplash.com/photo-1659930087003-2d64e33181f7?q=80&w=1170&auto=format&fit=crop" alt="Création 3">
+    <img src="https://images.unsplash.com/photo-1705760058049-b58119c416a9?q=80&w=880&auto=format&fit=crop" alt="Création 4">
+    <img src="https://plus.unsplash.com/premium_photo-1674508713892-50cb9bb73520?q=80&w=1172&auto=format&fit=crop" alt="Création 5">
+</section>
+
+<div class="contact" id="contact">
+    <h2>Contact</h2>
+    <p>Email : contact@ebeniste.fr</p>
+    <p>Téléphone : 06 00 00 00 00</p>
+    <p>Atelier situé en France</p>
+</div>
+
+<footer>
+    © 2026 Arthur Favreau - Ébéniste
+</footer>
+
+<script>
+const schema = document.getElementById("schema");
+
+window.addEventListener("scroll", () => {
+    const position = schema.getBoundingClientRect().top;
+    const screenPosition = window.innerHeight / 1.2;
+
+    if(position < screenPosition){
+        schema.classList.add("visible");
+    }
+});
+</script>
+
+</body>
+</html>
