@@ -81,30 +81,7 @@ nav a:hover {
     margin-top: 8px;
 }
 
-/* SECTION ME CONTACTER */
-.contact-me {
-    padding: 60px 20px;
-    text-align: center;
-}
-
-.contact-me a {
-    display: inline-block;
-    padding: 12px 30px;
-    background: #8B6C42;
-    color: white;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 500;
-    transition: 0.3s;
-}
-
-.contact-me a:hover {
-    background: #6f5434;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-/* QUI SUIS-JE - RECTANGLE ET IMAGE */
+/* QUI SUIS-JE */
 #apropos {
     display: flex;
     align-items: flex-start;
@@ -184,24 +161,44 @@ nav a:hover {
     box-shadow: 0 15px 40px rgba(0,0,0,0.2);
 }
 
-/* FLECHES ENTRE LES ETAPES */
-.step:not(:last-child)::after {
-    content: "→";
-    position: absolute;
-    right: -35px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.8rem;
-    color: #8B6C42;
-    font-weight: bold;
+/* ZONE MES CREATIONS */
+.creations-section {
+    padding: 60px 20px;
+    text-align: center;
+    background: #fefcf7;
+    border-top: 3px solid #8B6C42;
+    border-bottom: 3px solid #8B6C42;
 }
 
-/* CREATIONS */
+.creations-section h2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.creations-section h2 .mini-icon {
+    width: 150px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: transform 0.4s;
+    background: transparent; /* fond transparent */
+}
+
+.creations-section h2 .mini-icon:hover {
+    transform: scale(1.05);
+}
+
+/* CREATIONS GRID */
 .creations {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 .creations img {
@@ -216,26 +213,61 @@ nav a:hover {
 
 /* BOUTON CREATIONS */
 .btn-container {
-    margin-top: 40px;
+    margin-top: 20px;
     text-align: center;
 }
 
 .btn-creations {
     display: inline-block;
+    padding: 15px 40px;
+    background: linear-gradient(145deg, #8B6C42, #a5825b);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: 0.4s ease;
+}
+
+.btn-creations:hover {
+    background: linear-gradient(145deg, #6f5434, #8b6c42);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+}
+
+/* ZONE ME CONTACTER */
+.contact-me-section {
+    padding: 60px 20px;
+    background: #f4f1eb;
+    text-align: center;
+}
+
+.contact-me-box {
+    display: inline-block;
+    padding: 40px;
+    border: 2px solid #8B6C42;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.contact-me-box a {
+    display: inline-block;
     padding: 12px 30px;
     background: #8B6C42;
     color: white;
     text-decoration: none;
-    font-weight: 500;
-    letter-spacing: 1px;
     border-radius: 50px;
-    transition: 0.3s ease;
+    font-weight: 500;
+    transition: 0.3s;
+    margin-top: 15px;
 }
 
-.btn-creations:hover {
+.contact-me-box a:hover {
     background: #6f5434;
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
 /* PETITE GALERIE ARTISTIQUE */
@@ -295,14 +327,6 @@ footer {
         height: 150px;
     }
 
-    .step:not(:last-child)::after {
-        content: "↓";
-        position: absolute;
-        right: 50%;
-        top: 100%;
-        transform: translateX(50%) translateY(10px);
-    }
-
     .schema-box {
         flex-direction: column;
         gap: 25px;
@@ -321,6 +345,15 @@ footer {
     .hero h1 span {
         font-size: 1rem;
     }
+
+    .creations-section h2 {
+        flex-direction: column;
+    }
+
+    .mini-icon {
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
 }
 </style>
 </head>
@@ -338,12 +371,6 @@ footer {
         <span>Artisan Ébéniste</span>
     </h1>
 </div>
-
-<!-- SECTION ME CONTACTER -->
-<section class="contact-me">
-    <h2>Me contacter</h2>
-    <a href="mailto:contact@ebeniste.fr">Envoyer un mail</a>
-</section>
 
 <!-- QUI SUIS-JE -->
 <section id="apropos">
@@ -369,8 +396,12 @@ footer {
     </div>
 </section>
 
-<section id="creations">
-    <h2>Mes créations</h2>
+<!-- MES CREATIONS -->
+<section id="creations" class="creations-section">
+    <h2>
+        <img src="https://new.express.adobe.com/webpage/TsLCb6f4qSFm9/resources/b904ba77-5f4d-4775-af5f-30592cc9ca5e-img_7541_png?asset_id=f51b7b0b-625d-430e-9e28-18636f80e5c9&img_etag=%22bd5a2081f42644c0b1ce115ada1c4fef%22&image_assets=false&size=1024" alt="Icône création" class="mini-icon">
+        Mes créations
+    </h2>
     <p>Découvrez une sélection de mes projets réalisés sur mesure pour mes clients.</p>
 
     <div class="btn-container">
@@ -380,6 +411,19 @@ footer {
     </div>
 </section>
 
+
+
+
+<!-- ME CONTACTER -->
+<section class="contact-me-section">
+    <div class="contact-me-box">
+        <h2>Me contacter</h2>
+        <a href="mailto:contact@ebeniste.fr">Envoyer un mail</a>
+    </div>
+</section>
+
+
+
 <!-- PETITE GALERIE ARTISTIQUE -->
 <section class="art-gallery">
     <img src="https://plus.unsplash.com/premium_photo-1677151140623-77c513228776?q=80&w=687&auto=format&fit=crop" alt="Création 1">
@@ -388,6 +432,7 @@ footer {
     <img src="https://images.unsplash.com/photo-1705760058049-b58119c416a9?q=80&w=880&auto=format&fit=crop" alt="Création 4">
     <img src="https://plus.unsplash.com/premium_photo-1674508713892-50cb9bb73520?q=80&w=1172&auto=format&fit=crop" alt="Création 5">
 </section>
+
 
 <footer>
     © 2026 Arthur Favreau - Ébéniste
