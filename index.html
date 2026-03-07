@@ -3,452 +3,1289 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arthur Favreau - Ébéniste</title>
-
-<!-- Google Font moderne -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<title>Arthur Favreau — Ébéniste Artisan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+  :root {
+    --oak: #8B6C42;
+    --oak-dark: #5c4428;
+    --oak-light: #c4a882;
+    --cream: #f7f3ec;
+    --dark: #1a1410;
+    --mid: #3d2e1e;
+    --sand: #e8dfd0;
+    --white: #fdfaf5;
+  }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #f5f3ef;
-    color: #333;
-    scroll-behavior: smooth;
-}
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* MENU */
-nav {
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--dark);
+    color: var(--cream);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* ── CUSTOM CURSOR ── */
+  .cursor {
     position: fixed;
-    width: 100%;
-    top: 0;
-    background: rgba(139,108,66,0.95);
-    backdrop-filter: blur(6px);
-    padding: 15px 0;
-    text-align: center;
+    width: 10px; height: 10px;
+    background: var(--oak-light);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(196,168,130,0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.18s ease, width 0.4s ease, height 0.4s ease;
+  }
+  .cursor.hover { width: 16px; height: 16px; background: var(--oak); }
+  .cursor-ring.hover { width: 55px; height: 55px; border-color: var(--oak); }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
     z-index: 1000;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 20px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    transition: 0.3s;
-}
-
-nav a:hover {
-    opacity: 0.7;
-}
-
-/* HERO */
-.hero {
-    height: 90vh;
-    background: url('https://images.unsplash.com/photo-1497218770144-3fea6dbc33fe?w=1600&auto=format&fit=crop&q=60') center/cover no-repeat;
+    padding: 28px 60px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding-top: 60px;
-    text-align: center;
-}
-
-.hero h1 {
-    font-size: 3rem;
-    font-weight: 600;
+    mix-blend-mode: normal;
+  }
+  nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(26,20,16,0.92) 0%, transparent 100%);
+    pointer-events: none;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: var(--cream);
+    text-decoration: none;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    position: relative;
+    z-index: 1;
+  }
+  .nav-links a {
+    color: var(--sand);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 300;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: #2e2e2e;
-    background: rgba(255,255,255,0.75);
-    backdrop-filter: blur(10px);
-    padding: 25px 40px;
-    border-radius: 15px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-    margin-bottom: 20px;
-}
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--oak-light);
+    transition: width 0.4s ease;
+  }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-links a:hover::after { width: 100%; }
 
-.hero h1 span {
-    display: block;
-    font-size: 1rem;
-    font-weight: 300;
-    letter-spacing: 4px;
-    margin-top: 8px;
-}
-
-/* QUI SUIS-JE */
-#apropos {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 40px;
-    padding: 80px 20px;
-    flex-wrap: wrap;
-}
-
-#apropos .apropos-texte {
-    border: 2px solid #8B6C42;
-    padding: 30px;
-    border-radius: 15px;
-    max-width: 600px;
-    text-align: left;
-    flex: 1;
-}
-
-#apropos .apropos-texte p {
-    font-weight: 300;
-    line-height: 1.8;
-}
-
-#apropos .apropos-image {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
+  /* ── HERO ── */
+  .hero {
+    height: 100vh;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     overflow: hidden;
-    flex-shrink: 0;
-    border: 3px solid #8B6C42;
-}
+  }
 
-#apropos .apropos-image img {
-    width: 100%;
-    height: 100%;
+  .hero-image {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-image img {
+    width: 100%; height: 100%;
     object-fit: cover;
-}
+    transform: scale(1.08);
+    transition: transform 8s ease;
+    filter: brightness(0.75) saturate(0.8);
+  }
+  .hero:hover .hero-image img { transform: scale(1.0); }
+  .hero-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 60%, var(--dark) 100%);
+  }
 
-/* SCHEMA */
-.schema {
-    margin-top: 40px;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 1s ease;
-}
-
-.schema.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.schema-box {
+  .hero-content {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    flex-wrap: wrap;
+    padding: 100px 70px 80px 50px;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-eyebrow {
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--oak-light);
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 6vw, 6.5rem);
+    font-weight: 300;
+    line-height: 1.0;
+    color: var(--white);
+    margin-bottom: 15px;
+    opacity: 0;
+    animation: fadeUp 1s 0.55s forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--oak-light);
+    display: block;
+  }
+  .hero-sub {
+    font-size: 0.78rem;
+    font-weight: 200;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin-bottom: 60px;
+    opacity: 0;
+    animation: fadeUp 1s 0.8s forwards;
+  }
+  .hero-desc {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: rgba(231,220,208,0.7);
+    max-width: 380px;
+    margin-bottom: 50px;
+    opacity: 0;
+    animation: fadeUp 1s 1s forwards;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 20px;
     align-items: center;
-    gap: 30px;
-    margin-top: 40px;
+    opacity: 0;
+    animation: fadeUp 1s 1.2s forwards;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 16px 40px;
+    background: var(--oak);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
     position: relative;
-}
+    overflow: hidden;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--oak-dark);
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+  }
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary span { position: relative; z-index: 1; }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--sand);
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .btn-ghost::after {
+    content: '→';
+    font-size: 1rem;
+    transition: transform 0.3s;
+  }
+  .btn-ghost:hover { color: var(--oak-light); }
+  .btn-ghost:hover::after { transform: translateX(6px); }
 
-.step {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    width: 220px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    position: relative;
-}
-
-.step:hover {
-    transform: scale(1.1);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-}
-
-/* ZONE MES CREATIONS */
-.creations-section {
-    padding: 60px 20px;
-    text-align: center;
-    background: #fefcf7;
-    border-top: 3px solid #8B6C42;
-    border-bottom: 3px solid #8B6C42;
-}
-
-.creations-section h2 {
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    margin-bottom: 20px;
-    gap: 15px;
-}
+    gap: 10px;
+    opacity: 0;
+    animation: fadeUp 1s 1.5s forwards;
+  }
+  .hero-scroll span {
+    font-size: 0.6rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--oak-light);
+  }
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--oak-light), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
 
-.creations-section h2 .mini-icon {
-    width: 150px;
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    transition: transform 0.4s;
-    background: transparent; /* Fond transparent */
-}
+  /* ── MARQUEE STRIP ── */
+  .marquee-strip {
+    background: var(--oak);
+    padding: 14px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-track {
+    display: inline-flex;
+    animation: marquee 20s linear infinite;
+  }
+  .marquee-track span {
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--cream);
+    padding: 0 40px;
+    opacity: 0.85;
+  }
+  .marquee-track .sep {
+    color: var(--oak-light);
+    opacity: 1;
+    padding: 0 10px;
+    font-size: 0.7rem;
+  }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-.creations-section h2 .mini-icon:hover {
-    transform: scale(1.05);
-}
+  /* ── SECTIONS COMMON ── */
+  section { padding: 120px 60px; }
 
-/* CREATIONS GRID */
-.creations {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
-}
-
-.creations img {
-    width: 100%;
-    border-radius: 15px;
-    transition: 0.4s;
-}
-
-.creations img:hover {
-    transform: scale(1.05);
-}
-
-/* BOUTON CREATIONS */
-.btn-container {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.btn-creations {
-    display: inline-block;
-    padding: 15px 40px;
-    background: linear-gradient(145deg, #8B6C42, #a5825b);
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    letter-spacing: 1px;
-    border-radius: 50px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    transition: 0.4s ease;
-}
-
-.btn-creations:hover {
-    background: linear-gradient(145deg, #6f5434, #8b6c42);
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-}
-
-/* ZONE ME CONTACTER */
-.contact-me-section {
-    padding: 60px 20px;
-    background: #f4f1eb;
-    text-align: center;
-}
-
-.contact-me-box {
-    display: inline-block;
-    padding: 40px;
-    border: 2px solid #8B6C42;
-    border-radius: 20px;
-    background: #fff;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.contact-me-box a {
-    display: inline-block;
-    padding: 12px 30px;
-    background: #8B6C42;
-    color: white;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 500;
-    transition: 0.3s;
-    margin-top: 15px;
-}
-
-.contact-me-box a:hover {
-    background: #6f5434;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-/* PETITE GALERIE ARTISTIQUE */
-.art-gallery {
-    max-width: 1200px;
-    margin: 60px auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-    justify-items: center;
+  .section-tag {
+    display: inline-flex;
     align-items: center;
-}
+    gap: 12px;
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--oak-light);
+    margin-bottom: 30px;
+  }
+  .section-tag::before {
+    content: '';
+    display: block;
+    width: 30px; height: 1px;
+    background: var(--oak-light);
+  }
+  h2.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 30px;
+  }
+  h2.section-title em {
+    font-style: italic;
+    color: var(--oak-light);
+  }
 
-.art-gallery img {
-    width: 90%;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    transition: 0.5s;
-    transform-origin: center;
-}
+  /* ── ABOUT ── */
+  .about {
+    background: var(--mid);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .about::before {
+    content: 'AF';
+    position: absolute;
+    right: -40px; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 25rem;
+    font-weight: 700;
+    color: rgba(139,108,66,0.04);
+    pointer-events: none;
+    line-height: 1;
+  }
+  .about-text p {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 2;
+    color: rgba(231,220,208,0.75);
+    margin-bottom: 20px;
+  }
+  .about-text p strong {
+    color: var(--cream);
+    font-weight: 400;
+  }
+  .about-stats {
+    display: flex;
+    gap: 50px;
+    margin-top: 50px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(139,108,66,0.3);
+  }
+  .stat-item { text-align: center; }
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--oak-light);
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(231,220,208,0.5);
+    margin-top: 6px;
+    display: block;
+  }
 
-.art-gallery img:nth-child(1) { transform: rotate(-3deg); }
-.art-gallery img:nth-child(2) { transform: rotate(2deg); }
-.art-gallery img:nth-child(3) { transform: rotate(-1deg); }
-.art-gallery img:nth-child(4) { transform: rotate(3deg); }
-.art-gallery img:nth-child(5) { transform: rotate(-2deg); }
+  .about-visual {
+    position: relative;
+  }
+  .about-portrait {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    filter: grayscale(20%) brightness(0.9);
+    border-radius: 2px;
+    display: block;
+  }
+  .about-visual::before {
+    content: '';
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 100%; height: 100%;
+    border: 1px solid rgba(139,108,66,0.3);
+    border-radius: 2px;
+    z-index: -1;
+  }
+  .about-tag-float {
+    position: absolute;
+    bottom: -20px; left: -30px;
+    background: var(--oak);
+    padding: 20px 30px;
+  }
+  .about-tag-float span {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--white);
+  }
+  .about-tag-float small {
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
 
-.art-gallery img:hover {
-    transform: scale(1.08) rotate(0deg);
-}
+  /* ── PROCESS ── */
+  .process {
+    background: var(--dark);
+    position: relative;
+  }
+  .process-intro {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    margin-bottom: 80px;
+    align-items: end;
+  }
+  .process-intro p {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: rgba(231,220,208,0.65);
+    align-self: end;
+    padding-bottom: 8px;
+  }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+  .process-step {
+    background: var(--mid);
+    padding: 50px 35px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s ease;
+  }
+  .process-step:hover { background: rgba(92,68,40,0.5); }
+  .process-step::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--oak);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .process-step:hover::before { transform: scaleX(1); }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: rgba(139,108,66,0.15);
+    line-height: 1;
+    margin-bottom: 30px;
+    display: block;
+    transition: color 0.4s;
+  }
+  .process-step:hover .step-num { color: rgba(139,108,66,0.35); }
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 15px;
+    display: block;
+  }
+  .step-desc {
+    font-size: 0.82rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(231,220,208,0.55);
+  }
 
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #8B6C42;
-    color: white;
+  /* ── CREATIONS ── */
+  .creations {
+    background: var(--cream);
+    color: var(--dark);
+  }
+  .creations .section-tag { color: var(--oak); }
+  .creations .section-tag::before { background: var(--oak); }
+  .creations h2.section-title { color: var(--dark); }
+  .creations h2.section-title em { color: var(--oak); }
+
+  .creations-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+  }
+  .creations-header p {
     font-size: 0.9rem;
-}
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(26,20,16,0.6);
+    max-width: 350px;
+  }
 
-/* MEDIA QUERIES - MOBILE */
-@media (max-width: 768px) {
-    #apropos {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 20px;
-    }
+  .gallery-masonry {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 4px;
+  }
+  .gallery-item {
+    overflow: hidden;
+    position: relative;
+    background: var(--sand);
+  }
+  .gallery-item:nth-child(1) { grid-row: 1 / 3; }
+  .gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease, filter 0.5s ease;
+    filter: saturate(0.85);
+    min-height: 250px;
+  }
+  .gallery-item:nth-child(1) img { min-height: 500px; }
+  .gallery-item:hover img {
+    transform: scale(1.06);
+    filter: saturate(1.1);
+  }
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(26,20,16,0);
+    display: flex;
+    align-items: flex-end;
+    padding: 25px;
+    transition: background 0.4s ease;
+  }
+  .gallery-item:hover .gallery-overlay { background: rgba(26,20,16,0.4); }
+  .gallery-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: white;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+  }
+  .gallery-item:hover .gallery-label { opacity: 1; transform: translateY(0); }
 
-    #apropos .apropos-texte {
-        text-align: center;
-        max-width: 90%;
-    }
+  .gallery-cta {
+    margin-top: 50px;
+    text-align: center;
+  }
+  .btn-dark {
+    display: inline-block;
+    padding: 18px 60px;
+    border: 1px solid var(--oak);
+    color: var(--oak-dark);
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-dark::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--oak);
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+  }
+  .btn-dark:hover { color: var(--white); }
+  .btn-dark:hover::before { transform: translateY(0); }
+  .btn-dark span { position: relative; z-index: 1; }
 
-    #apropos .apropos-image {
-        width: 150px;
-        height: 150px;
-    }
+  /* ── MATERIALS ── */
+  .materials {
+    background: var(--mid);
+    position: relative;
+    overflow: hidden;
+  }
+  .materials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+  }
+  .material-card {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+  }
+  .material-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5) saturate(0.6);
+    transition: all 0.5s ease;
+  }
+  .material-card:hover img { filter: brightness(0.7) saturate(0.9); transform: scale(1.05); }
+  .material-info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 30px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  }
+  .material-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--cream);
+    display: block;
+  }
+  .material-origin {
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--oak-light);
+  }
 
-    .schema-box {
-        flex-direction: column;
-        gap: 25px;
-    }
+  /* ── TESTIMONIAL ── */
+  .testimonial {
+    background: var(--dark);
+    text-align: center;
+    padding: 120px 200px;
+    position: relative;
+    overflow: hidden;
+  }
+  .testimonial::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30rem;
+    font-weight: 700;
+    color: rgba(139,108,66,0.04);
+    position: absolute;
+    top: -60px; left: 50%;
+    transform: translateX(-50%);
+    line-height: 1;
+    pointer-events: none;
+  }
+  blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--cream);
+    margin-bottom: 40px;
+    position: relative;
+  }
+  blockquote em { color: var(--oak-light); font-style: normal; }
+  cite {
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(231,220,208,0.4);
+  }
 
-    nav a {
-        margin: 10px 15px;
-        display: inline-block;
-    }
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--oak);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0;
+  }
+  .contact-left {
+    padding: 100px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .contact-left .section-tag { color: rgba(255,255,255,0.7); }
+  .contact-left .section-tag::before { background: rgba(255,255,255,0.5); }
+  .contact-left h2.section-title { color: var(--white); }
+  .contact-left h2.section-title em { color: rgba(255,255,255,0.6); }
+  .contact-left p {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 50px;
+    max-width: 400px;
+  }
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .contact-item-icon {
+    width: 42px; height: 42px;
+    border: 1px solid rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-item-icon svg { width: 16px; height: 16px; stroke: white; fill: none; stroke-width: 1.5; }
+  .contact-item-text a, .contact-item-text span {
+    display: block;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 300;
+  }
+  .contact-item-text small {
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
 
-    .hero h1 {
-        font-size: 2.2rem;
-        padding: 20px 30px;
-    }
+  .contact-right {
+    background: var(--oak-dark);
+    padding: 100px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .contact-right h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--cream);
+    margin-bottom: 40px;
+  }
+  .form-group {
+    margin-bottom: 24px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(231,220,208,0.5);
+    margin-bottom: 10px;
+  }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    background: rgba(255,255,255,0.07);
+    border: none;
+    border-bottom: 1px solid rgba(231,220,208,0.25);
+    padding: 14px 0;
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s;
+    cursor: none;
+  }
+  .form-group select { background: rgba(92,68,40,0.8); padding: 14px 10px; }
+  .form-group select option { background: var(--oak-dark); }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-bottom-color: var(--cream);
+  }
+  .form-group textarea { resize: none; height: 100px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .btn-submit {
+    margin-top: 30px;
+    width: 100%;
+    padding: 18px;
+    background: var(--cream);
+    color: var(--oak-dark);
+    border: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    cursor: none;
+    transition: all 0.3s ease;
+  }
+  .btn-submit:hover { background: white; transform: translateY(-2px); }
 
-    .hero h1 span {
-        font-size: 1rem;
-    }
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    padding: 50px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(139,108,66,0.2);
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+  .footer-logo small {
+    display: block;
+    font-size: 0.55rem;
+    font-weight: 300;
+    letter-spacing: 5px;
+    color: var(--oak-light);
+    font-family: 'Jost', sans-serif;
+    margin-top: 4px;
+    font-style: normal;
+  }
+  .footer-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+  }
+  .footer-links a {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(231,220,208,0.4);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--oak-light); }
+  .footer-copy {
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    color: rgba(231,220,208,0.3);
+  }
 
-    .creations-section h2 {
-        flex-direction: column;
-    }
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.15s; }
+  .reveal-delay-2 { transition-delay: 0.3s; }
+  .reveal-delay-3 { transition-delay: 0.45s; }
+  .reveal-delay-4 { transition-delay: 0.6s; }
 
-    .mini-icon {
-        margin-bottom: 10px;
-        margin-right: 0;
-    }
-}
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    nav { padding: 20px 30px; }
+    .nav-links { gap: 20px; }
+    section { padding: 80px 30px; }
+
+    .hero { grid-template-columns: 1fr; }
+    .hero-image { position: absolute; inset: 0; }
+    .hero-image::after { background: rgba(26,20,16,0.65); }
+    .hero-content { padding: 100px 30px 80px; grid-column: 1; grid-row: 1; position: relative; z-index: 2; }
+
+    .about { grid-template-columns: 1fr; gap: 50px; }
+    .about-visual { display: none; }
+    .about-stats { gap: 30px; justify-content: center; }
+
+    .process-intro { grid-template-columns: 1fr; gap: 20px; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+
+    .creations-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .gallery-masonry { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gallery-item:nth-child(1) { grid-row: auto; grid-column: span 2; }
+
+    .materials-grid { grid-template-columns: 1fr; }
+
+    .testimonial { padding: 80px 30px; }
+
+    .contact { grid-template-columns: 1fr; }
+    .contact-left, .contact-right { padding: 60px 30px; }
+
+    footer { flex-direction: column; gap: 20px; text-align: center; }
+    .footer-links { justify-content: center; }
+
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+    * { cursor: auto !important; }
+    .form-group input, .form-group textarea, .form-group select, .btn-submit { cursor: auto; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-title { font-size: 3rem; }
+    .process-steps { grid-template-columns: 1fr; }
+    .gallery-masonry { grid-template-columns: 1fr; }
+    .gallery-item:nth-child(1) { grid-column: auto; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
 </style>
 </head>
-
 <body>
 
+<!-- CUSTOM CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAVIGATION -->
 <nav>
-    <a href="#accueil">Accueil</a>
-    <a href="#creations">Mes créations</a>
+  <a href="#accueil" class="nav-logo">Arthur Favreau</a>
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#processus">Processus</a></li>
+    <li><a href="#creations">Créations</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
 
-<div class="hero" id="accueil">
-    <h1>
-        Arthur Favreau
-        <span>Artisan Ébéniste</span>
+<!-- HERO -->
+<section class="hero" id="accueil">
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1497218770144-3fea6dbc33fe?w=1600&auto=format&fit=crop&q=80" alt="Atelier ébénisterie">
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Artisan ébéniste · Ancenis, France</p>
+    <h1 class="hero-title">
+      Arthur<br>
+      <em>Favreau</em>
     </h1>
+    <p class="hero-sub">Ébéniste Artisan</p>
+    <p class="hero-desc">
+      Artisan ébeniste spécialisé dans la création de mobilier et d'objets en bois massif,
+    </p>
+    <div class="hero-cta">
+      <a href="#creations" class="btn-primary"><span>Voir les créations</span></a>
+      <a href="#contact" class="btn-ghost">Demander un devis</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Défiler</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span>Savoir-faire artisanal</span><span class="sep">✦</span>
+    <span>Bois massif sélectionné</span><span class="sep">✦</span>
+    <span>Création sur mesure</span><span class="sep">✦</span>
+    <span>Finitions à la main</span><span class="sep">✦</span>
+    <span>Pièces uniques</span><span class="sep">✦</span>
+    <span>Tradition & modernité</span><span class="sep">✦</span>
+    <span>Savoir-faire artisanal</span><span class="sep">✦</span>
+    <span>Bois massif sélectionné</span><span class="sep">✦</span>
+    <span>Création sur mesure</span><span class="sep">✦</span>
+    <span>Finitions à la main</span><span class="sep">✦</span>
+    <span>Pièces uniques</span><span class="sep">✦</span>
+    <span>Tradition & modernité</span><span class="sep">✦</span>
+  </div>
 </div>
 
-<!-- QUI SUIS-JE -->
-<section id="apropos">
-    <div class="apropos-image">
-        <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=600" alt="Portrait">
-    </div>
-    <div class="apropos-texte">
-        <h2>Qui suis-je ?</h2>
-        <p>
-            Artisan passionné par le bois et les matériaux nobles, Arthur Favreau conçoit
-            des pièces uniques mêlant tradition et modernité. Chaque création est pensée
-            avec exigence, précision et respect du matériau.
-        </p>
-
-        <div class="schema" id="schema">
-            <h2>Le Processus</h2>
-            <div class="schema-box">
-                <div class="step">1. Écoute & imagination</div>
-                <div class="step">2. Conception</div>
-                <div class="step">3. Fabrication</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- MES CREATIONS -->
-<section id="creations" class="creations-section">
-    <h2>
-        <img src="https://new.express.adobe.com/webpage/TsLCb6f4qSFm9/resources/dfa1f002-f185-4d2f-9030-cf2f98c90119-img_7543_jpe?asset_id=955ed2c3-3143-4849-b435-da673687a26a&img_etag=%22de9ef15514bf4a1bb581dcf7ae299bf3%22&image_assets=false&size=1024" alt="Icône création" class="mini-icon">
-        Mes créations
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text">
+    <div class="section-tag reveal">À propos</div>
+    <h2 class="section-title reveal reveal-delay-1">
+      Une passion pour<br>
+      <em>le bois noble</em>
     </h2>
-    <p>Découvrez une sélection de mes projets réalisés sur mesure pour mes clients.</p>
-
-    <div class="btn-container">
-        <a href="https://ton-lien-externe.com" target="_blank" class="btn-creations">
-            Voir mes créations
-        </a>
+    <p class="reveal reveal-delay-2">
+      Artisan passionné, <strong>Arthur Favreau</strong> consacre son atelier à la création de 
+      mobilier et d'objets uniques en bois massif. Chaque pièce naît d'un dialogue 
+      entre les essences nobles et les exigences du client.
+    </p>
+    <p class="reveal reveal-delay-3">
+      Formé dans la tradition de la grande ébénisterie française, j'ai développé un savoir-faire atravers une formation  
+      chez les<strong>Compagnons du Devoir</strong> 
+    </p>
+    <div class="about-stats reveal reveal-delay-4">
+      <div class="stat-item">
+        <span class="stat-number"></span>
+        <span class="stat-label"></span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number"></span>
+        <span class="stat-label"></span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">Sur mesure</span>
+      </div>
     </div>
-</section>
-
-
-<!-- ME CONTACTER -->
-<section class="contact-me-section">
-    <div class="contact-me-box">
-        <h2>Me contacter</h2>
-        <a href="mailto:contact@ebeniste.fr">Envoyer un mail</a>
+  </div>
+  <div class="about-visual reveal">
+    <img src="https://media.istockphoto.com/id/2264492064/fr/photo/couper-des-planches-de-bois-avec-une-scie-%C3%A9lectrique.jpg?s=612x612&w=0&k=20&c=5nLY3vGzPYXo7Z6OytjORPKMuBJFMKPQd103xwS7LyM=" alt="Arthur Favreau" class="about-portrait">
+    <div class="about-tag-float">
+      <span>L'art du bois</span>
+      <small>Atelier · Ancenis</small>
     </div>
+  </div>
+</section>
+
+<!-- PROCESSUS -->
+<section class="process" id="processus">
+  <div class="process-intro">
+    <div>
+      <div class="section-tag reveal">Méthode</div>
+      <h2 class="section-title reveal reveal-delay-1">
+        Le<br><em>processus</em>
+      </h2>
+    </div>
+    <p class="reveal reveal-delay-2">
+      De la première rencontre à la livraison, chaque étape est conduite avec rigueur 
+      et transparence. Votre projet est unique — son processus l'est aussi.
+    </p>
+  </div>
+  <div class="process-steps">
+    <div class="process-step reveal">
+      <span class="step-num">01</span>
+      <span class="step-title">Écoute & imagination</span>
+      <p class="step-desc">Une conversation pour comprendre vos besoins, vos goûts, votre espace. Le projet prend forme dans l'échange.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-1">
+      <span class="step-num">02</span>
+      <span class="step-title">Conception</span>
+      <p class="step-desc">Plans et croquis détaillés. Sélection des essences. Chaque détail est pensé avant que le premier copeau tombe.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-2">
+      <span class="step-num">03</span>
+      <span class="step-title">Fabrication</span>
+      <p class="step-desc">Travail du bois à la main dans mon atelier. Assemblages traditionnels, finitions irréprochables.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-3">
+      <span class="step-num">04</span>
+      <span class="step-title">Livraison</span>
+      <p class="step-desc">Installation soignée et transmission des conseils d'entretien. La pièce est faite pour durer des générations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CREATIONS -->
+<section class="creations" id="creations">
+  <div class="creations-header">
+    <div>
+      <div class="section-tag reveal"></div>
+      <h2 class="section-title reveal reveal-delay-1">
+        <br><em></em>
+      </h2>
+    </div>
+    <p class="reveal reveal-delay-2">
+      Une sélection de pièces réalisées sur mesure.<br>
+      Chaque projet, une histoire unique.
+    </p>
+  </div>
+
+  <div class="gallery-masonry reveal">
+    <div class="gallery-item">
+      <img src="https://plus.unsplash.com/premium_photo-1677151140623-77c513228776?q=80&w=800&auto=format&fit=crop" alt="Table en chêne">
+      <div class="gallery-overlay">
+        <span class="gallery-label"></span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://plus.unsplash.com/premium_photo-1682144637216-003428392e22?q=80&w=600&auto=format&fit=crop" alt="Bibliothèque sur mesure">
+      <div class="gallery-overlay">
+        <span class="gallery-label"></span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1659930087003-2d64e33181f7?q=80&w=600&auto=format&fit=crop" alt="Bureau artisanal">
+      <div class="gallery-overlay">
+        <span class="gallery-label"></span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1705760058049-b58119c416a9?q=80&w=600&auto=format&fit=crop" alt="Commode vintage">
+      <div class="gallery-overlay">
+        <span class="gallery-label"></span>
+      </div>r
+    </div>
+    <div class="gallery-item">
+      <img src="https://plus.unsplash.com/premium_photo-1674508713892-50cb9bb73520?q=80&w=600&auto=format&fit=crop" alt="Détail assemblage">
+      <div class="gallery-overlay">
+        <span class="gallery-label"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="gallery-cta reveal">
+    <a href="#contact" class="btn-dark"><span></span></a>
+  </div>
+</section>
+
+<!-- MATÉRIAUX -->
+<section class="materials">
+  <div class="section-tag reveal"></div>
+  <h2 class="section-title reveal reveal-delay-1">
+    Des bois<br><em>d'exception</em>
+  </h2>
+  <div class="materials-grid">
+    <div class="material-card reveal">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop&q=80" alt="Chêne">
+      <div class="material-info">
+        <span class="material-name"></span>
+        <span class="material-origin"></span>
+      </div>
+    </div>
+    <div class="material-card reveal reveal-delay-1">
+      <img src="https://images.unsplash.com/photo-1611174275932-bc559a4a4c29?w=600&auto=format&fit=crop&q=80" alt="Noyer">
+      <div class="material-info">
+        <span class="material-name"></span>
+        <span class="material-origin"></span>
+      </div>
+    </div>
+    <div class="material-card reveal reveal-delay-2">
+      <img src="https://images.unsplash.com/photo-1497218770144-3fea6dbc33fe?w=600&auto=format&fit=crop&q=80" alt="Frêne">
+      <div class="material-info">
+        <span class="material-name">Frêne</span>
+        <span class="material-origin">Vosges · Grain fin</span>
+      </div>
+    </div>
+  </div>
 </section>
 
 
 
-<!-- PETITE GALERIE ARTISTIQUE -->
-<section class="art-gallery">
-    <img src="https://plus.unsplash.com/premium_photo-1677151140623-77c513228776?q=80&w=687&auto=format&fit=crop" alt="Création 1">
-    <img src="https://plus.unsplash.com/premium_photo-1682144637216-003428392e22?q=80&w=1186&auto=format&fit=crop" alt="Création 2">
-    <img src="https://images.unsplash.com/photo-1659930087003-2d64e33181f7?q=80&w=1170&auto=format&fit=crop" alt="Création 3">
-    <img src="https://images.unsplash.com/photo-1705760058049-b58119c416a9?q=80&w=880&auto=format&fit=crop" alt="Création 4">
-    <img src="https://plus.unsplash.com/premium_photo-1674508713892-50cb9bb73520?q=80&w=1172&auto=format&fit=crop" alt="Création 5">
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-left">
+    <div class="section-tag">Contact</div>
+    <h2 class="section-title">
+      Parlons de<br>
+      <em>votre projet</em>
+    </h2>
+    <p>Chaque beau projet commence par une conversation. Décrivez-moi votre idée, et je vous répondrai au plus vite.</p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="contact-item-text">
+          <a href="mailto:arfa49500@gmail.com">arfa49500@gmail.com</a>
+          <small>Email</small>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.58 3.38 2 2 0 0 1 3.54 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45
+          <span>+33_6_47_24_94_79</span>
+          <small>Téléphone</small>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        
+          
+      </div>
+    </div>
+  </div>
+  <div class="contact-right">
+    <h3>Votre projet mérite le meilleur des bois.</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Prénom</label>
+        <input type="text" placeholder="Jean">
+      </div>
+      <div class="form-group">
+        <label>Nom</label>
+        <input type="text" placeholder="Dupont">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" placeholder="jean.dupont@email.fr">
+    </div>
+    <div class="form-group">
+      <label>Type de projet</label>
+      <select>
+        <option value="">Sélectionner...</option>
+        <option>Table</option>
+        <option>Bureau</option>
+        <option>Bibliothèque</option>
+        <option>Mobilier de cuisine</option>
+        <option>Autre</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Décrivez votre projet</label>
+      <textarea placeholder="En quelques mots, parlez-moi de vos envies, dimensions, essences préférées..."></textarea>
+    </div>
+    <button class="btn-submit">Envoyer le message</button>
+  </div>
 </section>
 
-
-
+<!-- FOOTER -->
 <footer>
-    © 2026 Arthur Favreau - Ébéniste
+  <div class="footer-logo">
+    Arthur Favreau
+    <small>Ébéniste Artisan</small>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#processus">Processus</a></li>
+    <li><a href="#creations">Créations</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 Arthur Favreau</span>
 </footer>
 
 <script>
-const schema = document.getElementById("schema");
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
 
-window.addEventListener("scroll", () => {
-    const position = schema.getBoundingClientRect().top;
-    const screenPosition = window.innerHeight / 1.2;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+  });
 
-    if(position < screenPosition){
-        schema.classList.add("visible");
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button, .gallery-item, .process-step, .material-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); ring.classList.add('hover'); });
+    el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); ring.classList.remove('hover'); });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Parallax hero image
+  window.addEventListener('scroll', () => {
+    const heroImg = document.querySelector('.hero-image img');
+    if (heroImg) {
+      const scrollY = window.scrollY;
+      heroImg.style.transform = `scale(1.08) translateY(${scrollY * 0.15}px)`;
     }
-});
-</script>
+  });
 
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
 </body>
 </html>
